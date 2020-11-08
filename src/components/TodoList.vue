@@ -5,9 +5,9 @@
         <!-- 클릭 remove event 위하여 todoItem, index(삭제할 해당건)를 메소드에 넘겨준다 -->
         <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.item" class="shadow">
           <i class="fas fa-check checkBtn" v-bind:class="{checkBtnCompleted: todoItem.completed}" 
-          v @click="toggleComplete(todoItem, index)"></i>
+          v @click="toggleComplete(todoItem)"></i>
           <!-- 중요 v-bind 클래스 기존의 html 속성중 todoItem.completed값이 true면 textCompleted class가 동작한다 ->class on/off-->
-          <span v-bind:class="{textCompleted: todoItem.completed}">{{todoItem.item}} </span>
+          <span v-bind:class="{textCompleted: todoItem.completed}" v-on:click="toggleComplete(todoItem)">{{todoItem.item}} </span>
           <!-- {{todoItem}}으로 출력시 { "completed": false, "item": "dsdasa" } 로 나옴 -> .item 속성접근 -->
           <!-- todoItem,index를 인자로 넣어 넘긴다 -->
           <span v-on:click="removeItem(todoItem, index)" class="removeBtn"><i class="far fa-trash-alt"></i></span>
@@ -41,11 +41,11 @@ export default {
       removeItem: function (todoItem, index){
       //console.log(todoItem,index);
       //localstorage에서 지워주는 로직
-       localStorage.removeItem(todoItem);
+       localStorage.removeItem(todoItem.item); //todoItem 만으로 삭제안됨
        //화면에서 빼기
        this.todoItems.splice(index, 1);
       },
-      toggleComplete: function (todoItem, index) { //eslint-disable-line no-unused-vars
+      toggleComplete: function (todoItem) { 
         todoItem.completed = !todoItem.completed;
         //localstorage data 갱신작업  
         localStorage.removeItem(todoItem.item);

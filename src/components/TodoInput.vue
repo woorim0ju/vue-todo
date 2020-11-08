@@ -24,6 +24,11 @@ export default {
       if(this.newTodoItem !== ''){ //값이 있으면
       var obj = {completed: false, item: this.newTodoItem}; 
       //JOSN.stringify 자바스크립트 객체를 string으로 변환
+      // JSON.stringify() 는 javascript 객체를 string값으로 변환시킴
+      //그 이유: localstorage는 객체 출력이 안되고, string text값만 출력됨
+      // localStorage.setItem(this.todoItems, this.todoItems)으로 했다가
+      // todoList에서 checkbox의 toggle 메소드 사용을 위해 아래로 변경
+      // obj라는 객체에 담아주고, 아래 localstorage value값을 string으로 변환하여 입력
       localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
       this.clearInput();
       }

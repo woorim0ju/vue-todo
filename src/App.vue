@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import TodoHeader from './components/TodoHeader' //1번 componennt import 파일명 뒤에 .vue 붙지 않음 주의!
+import TodoHeader from './components/TodoHeader' //1번 componennt import 파일명 뒤에 .vue 붙여되고, 없어도됨!
 import TodoInput from './components//TodoInput'
 import TodoList from './components/TodoList'
 import TodoFooter from './components/TodoFooter'
